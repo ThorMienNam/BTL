@@ -214,6 +214,7 @@ int docFile(bi a[], char fileName[]) {
     fclose (fp);
     return i;
 }
+
 //ghi file
 void ghiFile(bi a[], int n, char fileName[]) {
     FILE * fp;
@@ -223,6 +224,7 @@ void ghiFile(bi a[], int n, char fileName[]) {
     }
     fclose(fp);
 }
+
 int mainqltv()
 {
     char fileName[] = "quanlythuvien.txt";
