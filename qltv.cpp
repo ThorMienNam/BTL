@@ -8,7 +8,6 @@ using namespace std;
 // Một quyển sách có các thông tin sau
 struct book_information
 {
-    int id;
     char isbn[8];//Mã số.
     char title[35];//Tên sách.
     char author[20];//Tác giả.
@@ -44,11 +43,9 @@ void inputbook(book_information &x)
 //
 void input(bi a[],int soluong,int &max,int number)
 {
-    char fileName[] = "quanlythuvien.txt";
     max+=soluong;
     for(int i =max-soluong; i<max;i++){
         inputbook(a[number]);
-        ghiFile(a,number,fileName);
     }
 }
 
@@ -245,12 +242,13 @@ int mainqltv()
         cout << "*************************MENU**************************\n";
         cout << "**  1. Them sach vao thu vien                        **\n";
         cout << "**  2. Hien thi danh sach thu vien.                  **\n";
-        cout << "**  4. Xoa sach theo ID sach                         **\n";
-        cout << "**  5. Tim kiem sach theo ten                        **\n";
-        cout << "**  6. Tim kiem sach theo ten tac gia                **\n";
-        cout << "**  7. Tim kiem sach theo chu de sach                **\n";
-        cout << "**  8. Tim kiem theo nha xuat ban sach               **\n";
-        cout << "**  9. Cap nhat thong tin cho sach                   **\n";
+        cout << "**  3. Xoa sach theo ID sach                         **\n";
+        cout << "**  4. Tim kiem sach theo ten                        **\n";
+        cout << "**  5. Tim kiem sach theo ten tac gia                **\n";
+        cout << "**  6. Tim kiem sach theo chu de sach                **\n";
+        cout << "**  7. Tim kiem theo nha xuat ban sach               **\n";
+        cout << "**  8. Cap nhat thong tin cho sach                   **\n";
+        cout << "**  9. Ghi danh sach vao file                        **\n";
         cout << "**  0. Thoat menu admin                              **\n";
         cout << "*******************************************************\n";
         cout << "Nhap tuy chon: ";
@@ -287,7 +285,7 @@ int mainqltv()
             break;
         case 4:
                 if(number > 0) {
-                    cout << "\n5. Tim kiem sach theo ten.";
+                    cout << "\n Tim kiem sach theo ten.";
                     char strTen[30];
                     cout << "\nNhap ten de tim kiem: "; fflush(stdin); gets(strTen);
                     lookupforname(a, strTen, number);
@@ -298,7 +296,7 @@ int mainqltv()
             break;
         case 5:
                 if(number > 0) {
-                    cout << "\n6.Tim kiem theo ten tac gia";
+                    cout << "\nTim kiem theo ten tac gia";
                     char strTg[30];
                     cout << "\nNhap ten tac gia can tim kiem: "; fflush(stdin); gets(strTg);
                     lookupforauthor(a, strTg, number);
@@ -309,7 +307,7 @@ int mainqltv()
             break;
         case 6:
                 if(number > 0) {
-                    cout << "\n7.Tim kiem theo chu de";
+                    cout << "\nTim kiem theo chu de";
                     char strcd[30];
                     cout << "\nNhap ten chu de sach can tim kiem: "; fflush(stdin); gets(strcd);
                     lookupforsubject(a, strcd, number);
@@ -320,7 +318,7 @@ int mainqltv()
             break;
         case 7:
                 if(number > 0) {
-                    cout << "\n8.Tim kiem theo nha xuat ban";
+                    cout << "\nTim kiem theo nha xuat ban";
                     char strnxb[30];
                     cout << "\nNhap nha xuat ban sach can tim kiem: "; fflush(stdin); gets(strnxb);
                     lookupforpuplish(a, strnxb, number);
@@ -332,7 +330,7 @@ int mainqltv()
         case 8:
             if(number > 0) {
                     char maso[12];
-                    cout << "\n9. Cap nhat sach. ";
+                    cout << "\nCap nhat sach. ";
                     cout << "\n Nhap ma so: "; cin >> maso;
                     updatebook(a, maso, number);
                 }else{
@@ -340,6 +338,16 @@ int mainqltv()
                 }
                 pressAnyKey();
             break;
+        case 9:
+                if(number > 0){
+                    cout << "\nGhi danh sach vao file.";
+                    ghiFile(a, number, fileName);
+                }else{
+                    cout << "\nDang sach trong!";
+                }
+                printf("\nGhi danh sach vao file %s thanh cong!", fileName);
+                pressAnyKey();
+                break;
         case 0:
             cout<<"Ban chon thoat truong trinh danh cho user admin!!\n";
             getch();
