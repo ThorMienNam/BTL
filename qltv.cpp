@@ -64,6 +64,7 @@ void outputbook(book_information *a,int n)
     cout<<setw(5) << left <<"So Ban copy\n";
 
     for (int i=0;i<n;i++){
+        cout<<"\n";
         cout<<setw(5) << left  << i+1;
         cout<<setw(8) << left  <<(a+i)->isbn;
         cout<<setw(35) << left  <<(a+i)->title;
@@ -72,7 +73,7 @@ void outputbook(book_information *a,int n)
         cout<<setw(21) << left  <<(a+i)->publisher;
         cout<<setw(15) << left  <<(a+i)->date;
         cout<<setw(9) << left  <<(a+i)->pages;
-        cout<<setw(5) << left  <<(a+i)->copies;cout<<endl;
+        cout<<setw(5) << left  <<(a+i)->copies;
     }
     printLine(147);
 }
@@ -206,10 +207,9 @@ int docFile(bi a[], char fileName[]) {
     fp = fopen (fileName, "r");
     cout << "Chuan bi doc file: "; puts(fileName);
     // doc thong tin sinh vien
-    while (fscanf(fp, "%8s%35s%20s%23s%21s%15d%9d%5d\n", &a[i].isbn, &a[i].title, 
-                                            &a[i].author, &a[i].subject, &a[i].publisher, &a[i].date, &a[i].pages, &a[i].copies) != EOF) {
+    while (fscanf(fp, "%8s%-35s%-20s%-23s%-21s%-15d%-9d%-5d\t", &a[i].isbn, &a[i].title, 
+                    &a[i].author, &a[i].subject, &a[i].publisher, &a[i].date, &a[i].pages, &a[i].copies) != EOF) {
        i++;
-       cout << " Doc ban ghi thu: " << i << endl;
     }
     cout << " So luong sach co san trong file la: " << i << endl;
     cout << endl;
@@ -222,8 +222,8 @@ void ghiFile(bi a[], int n, char fileName[]) {
     FILE * fp;
     fp = fopen (fileName,"w");
     for(int i = 0;i < n;i++){
-        fprintf(fp, "%8s%35s%20s%23s%21s%15d%9d%5d\n", a[i].isbn, a[i].title, 
-                                            a[i].author, a[i].subject, a[i].publisher, a[i].date, a[i].pages, a[i].copies);
+         fprintf(fp, "%-8s%-35s%-20s%-23s%-21s%-15d%-9d%-5d\n", a[i].isbn, a[i].title, 
+         a[i].author, a[i].subject, a[i].publisher, a[i].date, a[i].pages, a[i].copies);
     }
     fclose (fp);
 }
