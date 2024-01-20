@@ -206,7 +206,8 @@ int docFile(bi a[], char fileName[]) {
     int i = 0;
     fp = fopen (fileName, "r");
     cout << "Chuan bi doc file: "; puts(fileName);
-    while (fscanf(fp, "%9s%35s%20s%23s%21s%15d%9d%5d\n", &a[i].isbn, &a[i].title, &a[i].author, &a[i].subject, &a[i].publisher, &a[i].date, &a[i].pages, &a[i].copies) != EOF) {
+    while (fscanf(fp, "%9s%35s%20s%23s%21s%15d%9d%5d\n", 
+    &a[i].isbn, &a[i].title, &a[i].author, &a[i].subject, &a[i].publisher, &a[i].date, &a[i].pages, &a[i].copies) != EOF) {
        i++;
     }
     cout << " So loai sach co san trong file la: " << i << endl;
@@ -215,12 +216,14 @@ int docFile(bi a[], char fileName[]) {
     return i;
 }
 
+
 //ghi file
 void ghiFile(bi a[], int n, char fileName[]) {
     FILE * fp;
     fp = fopen (fileName,"w");
     for(int i = 0;i < n;i++){
-         fprintf(fp, "%9s%35s%20s%23s%21s%15d%9d%5d\n", a[i].isbn, a[i].title, a[i].author, a[i].subject, a[i].publisher, a[i].date, a[i].pages, a[i].copies);
+         fprintf(fp, "%9s%35s%20s%23s%21s%15d%9d%5d\n",
+          a[i].isbn, a[i].title, a[i].author, a[i].subject, a[i].publisher, a[i].date, a[i].pages, a[i].copies);
     }
     fclose(fp);
 }
