@@ -392,6 +392,7 @@ int qltvnormal()
                 outputbook(a,number);
                 break;
             }else cout<<"Thu vien dang rong!!!\n";
+            pressAnyKey();
             break;
         case 2:
                 if(number > 0) {
