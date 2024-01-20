@@ -30,23 +30,23 @@ void printLine(int n) {
 //Thêm sách vào thư viện
 void inputbook(book_information &x)
 {
-    cout<<"Ma sach:\n ";cin>>x.isbn;
-    cout<<"Ten sach:\n ";fflush(stdin); gets(x.title);
-    cout<<"Ten tac gia:\n ";fflush(stdin); gets(x.author);
-    cout<<"Chu de cua sach (Loai sach):\n ";fflush(stdin); gets(x.subject);
-    cout<<"Nha xuat ban:\n ";fflush(stdin); gets(x.publisher);
-    cout<<"Nam xuat ban:\n "; cin>>x.date;
-    cout<<"So trang sach:\n "; cin>>x.pages;
-    cout<<"So luong sach co trong thu vien (so ban coppy in thu vien):\n "; cin>>x.copies;
+    cout<<"Ma sach:\n";cin>>x.isbn;
+    cout<<"Ten sach:\n";fflush(stdin); gets(x.title);
+    cout<<"Ten tac gia:\n";fflush(stdin); gets(x.author);
+    cout<<"Chu de cua sach (Loai sach):\n";fflush(stdin); gets(x.subject);
+    cout<<"Nha xuat ban:\n";fflush(stdin); gets(x.publisher);
+    cout<<"Nam xuat ban:\n"; cin>>x.date;
+    cout<<"So trang sach:\n"; cin>>x.pages;
+    cout<<"So luong sach co trong thu vien (so ban coppy in thu vien):\n"; cin>>x.copies;
 }
 
 //
-void input(bi a[],int soluong,int &max,int number)
+void input(bi a[],int n)
 {
-    max+=soluong;
-    for(int i =max-soluong; i<max;i++){
-        inputbook(a[number]);
-    }
+    printLine(40);
+    printf("\n Nhap sach thu %d:\n", n + 1);
+    inputbook(a[n]);
+    printLine(40);
 }
 
 // Xuat hien sach
@@ -257,8 +257,7 @@ int mainqltv()
         {
         case 1:
             cout<<"Them sach vao thu vien";
-            cout<<"So luong sach can them vao:";cin>>soluong;;
-            input(a,soluong,max,number);
+            input(a,number);
             number++;
             break;
         case 2:
