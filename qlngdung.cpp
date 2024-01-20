@@ -29,7 +29,7 @@ int qladmin()
         }
 
     dangKy:
-        f.open(fileName, ios::out);
+        f.open(fileName, ios::out| ios::app);
         cout << "========Dang ky tai khoan=======\n";
         cout << "Nhap username (khong chua khoang trang): ";
         cin.ignore();

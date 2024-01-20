@@ -8,7 +8,7 @@ using namespace std;
 // Một quyển sách có các thông tin sau
 struct book_information
 {
-    char isbn[8];//Mã số.
+    char isbn[9];//Mã số.
     char title[35];//Tên sách.
     char author[20];//Tác giả.
     char subject[23];//Chủ đề hay loại sách.
@@ -54,7 +54,7 @@ void outputbook(book_information *a,int n)
 {
     printLine(147);                    
     cout<<setw(5) << left <<"stt";
-    cout<<setw(8) << left <<"ma so";
+    cout<<setw(9) << left <<"ma so";
     cout<<setw(35) << left <<"Ten Sach";
     cout<<setw(20) << left <<"Tac Gia";
     cout<<setw(23) << left <<"Chu De";
@@ -66,7 +66,7 @@ void outputbook(book_information *a,int n)
     for (int i=0;i<n;i++){
         cout<<"\n";
         cout<<setw(5) << left  << i+1;
-        cout<<setw(8) << left  <<(a+i)->isbn;
+        cout<<setw(9) << left  <<(a+i)->isbn;
         cout<<setw(35) << left  <<(a+i)->title;
         cout<<setw(20) << left  <<(a+i)->author;
         cout<<setw(23) << left  <<(a+i)->subject;
@@ -207,11 +207,11 @@ int docFile(bi a[], char fileName[]) {
     fp = fopen (fileName, "r");
     cout << "Chuan bi doc file: "; puts(fileName);
     // doc thong tin sinh vien
-    while (fscanf(fp, "%8s%-35s%-20s%-23s%-21s%-15d%-9d%-5d\t", &a[i].isbn, &a[i].title, 
+    while (fscanf(fp, "%2s%-9s%-35s%-20s%-23s%-21s%-15d%-9d%-5d\t", &a[i].isbn, &a[i].title, 
                     &a[i].author, &a[i].subject, &a[i].publisher, &a[i].date, &a[i].pages, &a[i].copies) != EOF) {
        i++;
     }
-    cout << " So luong sach co san trong file la: " << i << endl;
+    cout << " So loai sach co san trong file la: " << i << endl;
     cout << endl;
     fclose (fp);
     // tra ve so luong sinh vien duoc doc tu file
@@ -220,9 +220,9 @@ int docFile(bi a[], char fileName[]) {
 //ghi file
 void ghiFile(bi a[], int n, char fileName[]) {
     FILE * fp;
-    fp = fopen (fileName,"w");
+    fp = fopen (fileName,"w+a");
     for(int i = 0;i < n;i++){
-         fprintf(fp, "%-8s%-35s%-20s%-23s%-21s%-15d%-9d%-5d\n", a[i].isbn, a[i].title, 
+         fprintf(fp, "%-9s%-35s%-20s%-23s%-21s%-15d%-9d%-5d\n", a[i].isbn, a[i].title, 
          a[i].author, a[i].subject, a[i].publisher, a[i].date, a[i].pages, a[i].copies);
     }
     fclose (fp);
