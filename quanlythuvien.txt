@@ -1,4 +1,0 @@
-A001    De Men Phieu Luu Ky                To Hoai             Truyen Co Tich         Kim Dong             1978           100      12   
-A002    Vi cau la ban nho cua to           Tun Pham            tieu thuyet            Phu nu viet nam      2023           240      12   
-A003    Truyen Kieu                        Nguyen Du           tho                    NXB GD VN            1945           1560     12   
-A004    Hon Ngoc Cua Dong Duong            Han mac Tu          tho                    Phu Nu viet nam      2023           1230     120  
