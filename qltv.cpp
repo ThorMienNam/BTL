@@ -50,7 +50,7 @@ void input(bi a[],int n)
 }
 
 // Xuat hien sach
-void outputbook(book_information *a,int n)
+void outputbook(bi a[],int n)
 {
     printLine(147);                    
     cout<<setw(5) << left <<"stt";
@@ -61,19 +61,19 @@ void outputbook(book_information *a,int n)
     cout<<setw(21) << left <<"Nha Xuat Ban";
     cout<<setw(15) << left <<"Ngay xuat ban";
     cout<<setw(9) << left <<"So Trang";
-    cout<<setw(5) << left <<"So Ban copy\n";
+    cout<<right <<"So Ban copy\n";
 
     for (int i=0;i<n;i++){
         cout<<"\n";
         cout<<setw(5) << left  << i+1;
-        cout<<setw(9) << left  <<(a+i)->isbn;
-        cout<<setw(35) << left  <<(a+i)->title;
-        cout<<setw(20) << left  <<(a+i)->author;
-        cout<<setw(23) << left  <<(a+i)->subject;
-        cout<<setw(21) << left  <<(a+i)->publisher;
-        cout<<setw(15) << left  <<(a+i)->date;
-        cout<<setw(9) << left  <<(a+i)->pages;
-        cout<<setw(5) << left  <<(a+i)->copies;
+        cout<<setw(9) << left  <<a[i].isbn;
+        cout<<setw(35) << left  <<a[i].title;
+        cout<<setw(20) << left  <<a[i].author;
+        cout<<setw(23) << left  <<a[i].subject;
+        cout<<setw(21) << left  <<a[i].publisher;
+        cout<<setw(15) << left  <<a[i].date;
+        cout<<setw(9) << left  <<a[i].pages;
+        cout<< right  <<a[i].copies;
     }
     printLine(147);
 }
@@ -206,15 +206,12 @@ int docFile(bi a[], char fileName[]) {
     int i = 0;
     fp = fopen (fileName, "r");
     cout << "Chuan bi doc file: "; puts(fileName);
-    // doc thong tin sinh vien
-    while (fscanf(fp, "%2s%-9s%-35s%-20s%-23s%-21s%-15d%-9d%-5d\t", &a[i].isbn, &a[i].title, 
-                    &a[i].author, &a[i].subject, &a[i].publisher, &a[i].date, &a[i].pages, &a[i].copies) != EOF) {
+    while (fscanf(fp, "%9s%35s%20s%23s%21s%15d%9d%5d\n", &a[i].isbn, &a[i].title, &a[i].author, &a[i].subject, &a[i].publisher, &a[i].date, &a[i].pages, &a[i].copies) != EOF) {
        i++;
     }
     cout << " So loai sach co san trong file la: " << i << endl;
     cout << endl;
     fclose (fp);
-    // tra ve so luong sinh vien duoc doc tu file
     return i;
 }
 //ghi file
@@ -222,10 +219,9 @@ void ghiFile(bi a[], int n, char fileName[]) {
     FILE * fp;
     fp = fopen (fileName,"w");
     for(int i = 0;i < n;i++){
-         fprintf(fp, "%-9s%-35s%-20s%-23s%-21s%-15d%-9d%-5d\n", a[i].isbn, a[i].title, 
-         a[i].author, a[i].subject, a[i].publisher, a[i].date, a[i].pages, a[i].copies);
+         fprintf(fp, "%9s%35s%20s%23s%21s%15d%9d%5d\n", a[i].isbn, a[i].title, a[i].author, a[i].subject, a[i].publisher, a[i].date, a[i].pages, a[i].copies);
     }
-    fclose (fp);
+    fclose(fp);
 }
 int mainqltv()
 {
@@ -234,7 +230,6 @@ int mainqltv()
     int key;
     int number =0;
     int max=0;
-    int soluong=0;
     number = docFile(a, fileName);
 
     while (true)
@@ -259,6 +254,7 @@ int mainqltv()
             cout<<"Them sach vao thu vien";
             input(a,number);
             number++;
+            pressAnyKey();
             break;
         case 2:
             if (number>0)
@@ -267,6 +263,7 @@ int mainqltv()
                 outputbook(a,number);
                 break;
             }else cout<<"Thu vien dang rong!!!\n";
+            pressAnyKey();
             break;
         case 3:
             if(number > 0) {
@@ -346,7 +343,7 @@ int mainqltv()
                 }
                 printf("\nGhi danh sach vao file %s thanh cong!", fileName);
                 pressAnyKey();
-                break;
+            break;
         case 0:
             cout<<"Ban chon thoat truong trinh danh cho user admin!!\n";
             getch();
